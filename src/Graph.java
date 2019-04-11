@@ -123,6 +123,8 @@ public class Graph<T> {
     }
 
 
+    /*
+
     public static void main(String[] args) {
         Graph<String> strings = new Graph<>();
         strings.add("1");
@@ -135,5 +137,6 @@ public class Graph<T> {
         strings.link("50", "2", 3);
         strings.runThrough();
     }
+    */
 
 }
