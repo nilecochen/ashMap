@@ -1,2 +1,2 @@
-public class Hall {
+public class Hall extends Tile {
 }
