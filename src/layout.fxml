@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField layoutX="717.0" layoutY="136.0" prefHeight="27.0" prefWidth="123.0" text="Current Position" />
       <Button layoutX="840.0" layoutY="136.0" mnemonicParsing="false" text="Confirm" />
@@ -15,7 +16,8 @@
       <Button layoutX="787.0" layoutY="236.0" mnemonicParsing="false" text="Reset" />
       <ImageView fitHeight="914.0" fitWidth="693.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/Users/admin/Documents/OneDrive%20-%20Ashbury%20College/Grade%2011/Computer%20Science/Summative/ashMaps/Files/AshburyFloorMapLevel2.jpg" />
+            <Image url="@/AshburyFloorMapLevel2.jpg" />
          </image></ImageView>
+      <Group />
    </children>
 </AnchorPane>

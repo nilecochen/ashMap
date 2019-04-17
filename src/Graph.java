@@ -121,6 +121,13 @@ public class Graph<T> {
 
 
     }
+    public T getVerticeData(int i){
+        return vertices.get(i).getData();
+    }
+
+    public int size() {
+        return vertices.size();
+    }
 
 
     /*
