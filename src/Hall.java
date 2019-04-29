@@ -14,12 +14,13 @@ public class Hall extends Tile {
 
     @Override
     public void draw() {
-        Circle circle = new Circle(2, Color.BLUE);
+        Circle circle = new Circle(1, Color.BLUE);
         circle.setCursor(Cursor.MOVE);
         circle.setCenterX(getX());
         circle.setCenterY(getY());
         root.getChildren().addAll(circle);
     }
+
 
 
 }

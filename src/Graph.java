@@ -1,8 +1,10 @@
+
 import java.util.ArrayList;
 
 public class Graph<T> {
 
     private ArrayList<Vertice> vertices = new ArrayList<>();
+    private ArrayList<Edge> edges = new ArrayList<>();
 
     public boolean add(T data) {
         for (int i = 0; i < vertices.size(); i++) {
@@ -38,8 +40,22 @@ public class Graph<T> {
             }
         }
         Edge edge = new Edge(vertices.get(vertice1index), vertices.get(vertice2index), weight);
+        edges.add(edge);
         return true;
     }
+
+
+
+    public boolean link (int i1, int i2, int weight) {
+        return link(vertices.get(i1-1).getData(), vertices.get(i2-1).getData(), weight);
+    }
+    public boolean link (T object1, int i2, int weight) {
+        return link(object1, vertices.get(i2-1).getData(), weight);
+    }
+    public boolean link (int i1, T object2, int weight) {
+        return link(vertices.get(i1-1).getData(), object2, weight);
+    }
+
 
 
     private class Vertice {
@@ -87,7 +103,17 @@ public class Graph<T> {
             }
 
         }
+
+        public Vertice getVertice1() {
+            return vertice1;
+        }
+
+        public Vertice getVertice2() {
+            return vertice2;
+        }
     }
+
+
 
 
 
@@ -129,6 +155,11 @@ public class Graph<T> {
         return vertices.size();
     }
 
+    public ArrayList<T> pathFinding(T start, T finish) {
+        ArrayList<T> path = new ArrayList<T>();
+
+        return path;
+    }
 
     /*
 
@@ -145,5 +176,15 @@ public class Graph<T> {
         strings.runThrough();
     }
     */
+    public ArrayList<ArrayList<T>> getEdges() {
+        ArrayList<ArrayList<T>> allData = new ArrayList<>();
+        for (Edge edge:edges) {
+            ArrayList<T> edgeData = new ArrayList<>();
+            edgeData.add(edge.getVertice1().getData());
+            edgeData.add(edge.getVertice2().getData());
+            allData.add(edgeData);
+        }
+        return allData;
+    }
 
 }
