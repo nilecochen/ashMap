@@ -154,8 +154,11 @@ public class Map {
         rooms.add(new Room(370, 130, root, "entrance"));
         graph.add(rooms.get(23));
 
+        rooms.add(new Room(102, 315, root, "library"));
+        graph.add(rooms.get(24));
 
-        // Create Links
+
+        // Create Links between halls
         graph.link(1,2, 1);
         graph.link(2, 3, 1);
         graph.link(3, 4, 1);
@@ -171,7 +174,76 @@ public class Map {
         graph.link(12, 13, 1);
         graph.link(13, 14, 1);
         graph.link(14, 15, 1);
-        //graph.link(11, 16, 1);
+        graph.link(11, 16, 1);
+        graph.link(16, 17, 1);
+        graph.link(17, 18, 1);
+        graph.link(18, 19, 1);
+        graph.link(19, 20, 1);
+        graph.link(20, 21, 1);
+        graph.link(21, 22, 1);
+        graph.link(22, 23, 1);
+        graph.link(23, 24, 1);
+        graph.link(24, 25, 1);
+        graph.link(25, 26, 1);
+        graph.link(22, 27, 1);
+        graph.link(27, 28, 1);
+        graph.link(28, 29, 1);
+        graph.link(29, 30, 1);
+        graph.link(28, 31, 1);
+        graph.link(31, 32, 1);
+        graph.link(32, 33, 1);
+        graph.link(33, 34, 1);
+        graph.link(34, 35, 1);
+        graph.link(16, 36, 1); //top terron to bottom terron
+        graph.link(36, 37, 1);
+        graph.link(37, 38, 1);
+        graph.link(38, 39, 1);
+        graph.link(39, 40, 1);
+        graph.link(40, 41, 1);
+        graph.link(41, 42, 1);
+        graph.link(42, 43, 1);
+        graph.link(43, 44, 1);
+        graph.link(44, 45, 1);
+        graph.link(36, 46, 1);
+        graph.link(46, 47, 1);
+        graph.link(47, 48, 1);
+        graph.link(48, 49, 1);
+
+        //Create links between halls and rooms
+        graph.link(1, findRoom("entrance"), 1000);
+        graph.link(2, findRoom("heritage room"), 1000);
+        graph.link(6, findRoom("t101"), 1000);
+        graph.link(6, findRoom("t102"), 1000);
+        graph.link(7, findRoom("student services"), 1000);
+        graph.link(8, findRoom("110"), 1000);
+        graph.link(9, findRoom("111"), 1000);
+        graph.link(10, findRoom("114"), 1000);
+        graph.link(34, findRoom("128"), 1000);
+        graph.link(31, findRoom("128"), 1000);
+        graph.link(30, findRoom("learning strategist"), 1000);
+        graph.link(28, findRoom("library"), 1000);
+        graph.link(29, findRoom("library"), 1000);
+        graph.link(23, findRoom("227"), 1000);
+        graph.link(24, findRoom("227"), 1000);
+        graph.link(26, findRoom("226"), 1000);
+        graph.link(25, findRoom("225"), 1000);
+        graph.link(25, findRoom("225"), 1000);
+        graph.link(25, findRoom("225"), 1000);
+        graph.link(25, findRoom("225"), 1000);
+        graph.link(21, findRoom("224"), 1000);
+        graph.link(20, findRoom("223"), 1000);
+        graph.link(19, findRoom("222"), 1000);
+        graph.link(18, findRoom("221"), 1000);
+        graph.link(27, findRoom("228"), 1000);
+
+        graph.link(15, findRoom("162"), 1000);
+        graph.link(15, findRoom("163"), 1000);
+        graph.link(45, findRoom("164"), 1000);
+        graph.link(44, findRoom("small gym"), 1000);
+        graph.link(49, findRoom("theater"), 1000);
+
+        graph.link(42, findRoom("big gym"), 1000);
+        graph.link(41, findRoom("big gym"), 1000);
 
 
 
@@ -183,6 +255,29 @@ public class Map {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public Room findRoom(String id) {
+        for(Room room: rooms) {
+            if (room.getId().equals(id)) {
+                return room;
+            }
+        }
+        return null;
     }
 
     public void drawLinks() {
