@@ -159,55 +159,55 @@ public class Map {
 
 
         // Create Links between halls
-        graph.link(1,2, 1);
-        graph.link(2, 3, 1);
-        graph.link(3, 4, 1);
-        graph.link(4, 5, 1);
-        graph.link(5, 6, 1);
-        graph.link(1, 7, 1);
-        graph.link(7, 8, 1);
-        graph.link(8, 9, 1);
-        graph.link(9, 35, 1);
-        graph.link(35, 10, 1);
-        graph.link(10, 11, 1);
-        graph.link(11, 12, 1);
-        graph.link(12, 13, 1);
-        graph.link(13, 14, 1);
-        graph.link(14, 15, 1);
-        graph.link(11, 16, 1);
-        graph.link(16, 17, 1);
-        graph.link(17, 18, 1);
-        graph.link(18, 19, 1);
-        graph.link(19, 20, 1);
-        graph.link(20, 21, 1);
-        graph.link(21, 22, 1);
-        graph.link(22, 23, 1);
-        graph.link(23, 24, 1);
-        graph.link(24, 25, 1);
-        graph.link(25, 26, 1);
-        graph.link(22, 27, 1);
-        graph.link(27, 28, 1);
-        graph.link(28, 29, 1);
-        graph.link(29, 30, 1);
-        graph.link(28, 31, 1);
-        graph.link(31, 32, 1);
-        graph.link(32, 33, 1);
-        graph.link(33, 34, 1);
-        graph.link(34, 35, 1);
-        graph.link(16, 36, 1); //top terron to bottom terron
-        graph.link(36, 37, 1);
-        graph.link(37, 38, 1);
-        graph.link(38, 39, 1);
-        graph.link(39, 40, 1);
-        graph.link(40, 41, 1);
-        graph.link(41, 42, 1);
-        graph.link(42, 43, 1);
-        graph.link(43, 44, 1);
-        graph.link(44, 45, 1);
-        graph.link(36, 46, 1);
-        graph.link(46, 47, 1);
-        graph.link(47, 48, 1);
-        graph.link(48, 49, 1);
+        graph.link(1,2, 73);
+        graph.link(2, 3, 33);
+        graph.link(3, 4, 12);
+        graph.link(4, 5, 34);
+        graph.link(5, 6, 12);
+        graph.link(1, 7, 44);
+        graph.link(7, 8, 87);
+        graph.link(8, 9, 10);
+        graph.link(9, 35, 64);
+        graph.link(35, 10, 20);
+        graph.link(10, 11, 52);
+        graph.link(11, 12, 21);
+        graph.link(12, 13, 25);
+        graph.link(13, 14, 25);
+        graph.link(14, 15, 14);
+        graph.link(11, 16, 36);
+        graph.link(16, 17, 67);
+        graph.link(17, 18, 19);
+        graph.link(18, 19, 44);
+        graph.link(19, 20, 42);
+        graph.link(20, 21, 11);
+        graph.link(21, 22, 98);
+        graph.link(22, 23, 27);
+        graph.link(23, 24, 35);
+        graph.link(24, 25, 25);
+        graph.link(25, 26, 17);
+        graph.link(22, 27, 11);
+        graph.link(27, 28, 93);
+        graph.link(28, 29, 65);
+        graph.link(29, 30, 52);
+        graph.link(28, 31, 109);
+        graph.link(31, 32, 41);
+        graph.link(32, 33, 68);
+        graph.link(33, 34, 45);
+        graph.link(34, 35, 89);
+        graph.link(16, 36, 90); //top terron to bottom terron
+        graph.link(36, 37, 56);
+        graph.link(37, 38, 36);
+        graph.link(38, 39, 73);
+        graph.link(39, 40, 46);
+        graph.link(40, 41, 59);
+        graph.link(41, 42, 25);
+        graph.link(42, 43, 57);
+        graph.link(43, 44, 91);
+        graph.link(44, 45, 22);
+        graph.link(36, 46, 24);
+        graph.link(46, 47, 28);
+        graph.link(47, 48, 46);
+        graph.link(48, 49, 46);
 
         //Create links between halls and rooms
         graph.link(1, findRoom("entrance"), 1000);
@@ -249,22 +249,7 @@ public class Map {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
@@ -272,12 +257,22 @@ public class Map {
     }
 
     public Room findRoom(String id) {
-        for(Room room: rooms) {
+        for(Room room: rooms) { //Linear search used because there is nothing that rooms can be compared to (they can't be sorted)
             if (room.getId().equals(id)) {
                 return room;
             }
         }
         return null;
+    }
+
+    /**
+     * returns the index of a certain room in the rooms array
+     * @param id name of the room being searched
+     * @return index of the room in the rooms array
+     */
+
+    public int findRoomIndex(String id) {
+        return rooms.indexOf(findRoom(id));
     }
 
     public void drawLinks() {
@@ -295,7 +290,9 @@ public class Map {
             root.getChildren().add(line);
         }
         */
-        ArrayList<Tile> path = graph.findPath(rooms.get(18), rooms.get(1));
+
+        ArrayList<Tile> path = graph.findPath(findRoom("114"), findRoom("226"));
+        //ArrayList<Tile> path = graph.findPath(rooms.get(18), rooms.get(1));
 
         for (Tile step: path) {
             System.out.println(step.getX() + ", " + step.getY());

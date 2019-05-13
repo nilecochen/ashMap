@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Queue;
 
-public class Graph<T> {
+public class Graph<T extends Tile> {
 
     private ArrayList<Vertice> vertices = new ArrayList<>();
 
@@ -23,6 +23,9 @@ public class Graph<T> {
 
     public boolean link (T object1, T object2, int weight) {
         int vertice1index = 0;
+
+        Linkerator linkFinder = new Linkerator(object1, object2, weight);
+
         for (int i = 0; i < vertices.size(); i++) {
             if (vertices.get(i).getData() == object1) {
                 vertice1index = i;
@@ -44,6 +47,8 @@ public class Graph<T> {
                 return false;
             }
         }
+
+        System.out.println(vertice1index + 1 + ", " + (vertice2index + 1) + ", weight: " + linkFinder.getWeight());
         Edge edge = new Edge(vertices.get(vertice1index), vertices.get(vertice2index), weight);
         edges.add(edge);
         return true;
