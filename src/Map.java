@@ -295,9 +295,22 @@ public class Map {
             root.getChildren().add(line);
         }
         */
+        ArrayList<Tile> path = graph.findPath(rooms.get(18), rooms.get(1));
+
+        for (Tile step: path) {
+            System.out.println(step.getX() + ", " + step.getY());
+
+        }
+
         for (ArrayList<Tile> points: graph.getEdges()) {
             Line line = new Line(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
             line.setStroke(Color.GREEN);
+            root.getChildren().add(line);
+        }
+
+        for (int i = 0; i < path.size() -1; i++)  {
+            Line line = new Line(path.get(i).getX(), path.get(i).getY(), path.get(i+1).getX(), path.get(i+1).getY());
+            line.setStroke(Color.RED);
             root.getChildren().add(line);
         }
     }
