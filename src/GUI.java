@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,10 @@ import javafx.stage.Stage;
 public class GUI extends Application {
     Scene scene;
     Parent layout;
-    Map map;
+    static Map map;
+
+    static String start = "";
+    static String end = "";
 
 
     //Button button;
@@ -33,6 +37,8 @@ public class GUI extends Application {
 
     @FXML
     private Canvas canvas = new Canvas();
+    @FXML
+    private Button confirmCurr;
 
 
 
@@ -48,6 +54,7 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Hello world");
         Group root = new Group();
+
 
         /*
         Circle circle = new Circle(50, Color.BLUE);
@@ -70,9 +77,13 @@ public class GUI extends Application {
         //root.getChildren().addAll(circle);
 
 
+        Controller.setRoot(root);
+        Controller.setLayout(layout);
+
+
 
         map = new Map(root);
-        map.draw();
+        //map.draw();
         //layout.getChildrenUnmodifiable().addAll();
 
         //layout.getChildren().add(button);
@@ -80,6 +91,7 @@ public class GUI extends Application {
         scene = new Scene(root, 1000, 1000);
         stage.setScene(scene);
         stage.show();
+
         scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -89,6 +101,11 @@ public class GUI extends Application {
         });
     }
 
+
+    @FXML
+    public void buttonPress(ActionEvent event) {
+        System.out.println("TADA!");
+    }
     /*
 
     EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -99,4 +116,29 @@ public class GUI extends Application {
     };
 
      */
+
+    public static void setStart(String start) {
+        GUI.start = start;
+        pathFind();
+
+    }
+
+    public static void setEnd(String end) {
+        GUI.end = end;
+        pathFind();
+    }
+
+    private static void pathFind() {
+        if (!end.equals("") && !start.equals("")) {
+            map.drawLinks(start, end);
+        }
+    }
+
+    public static String getStart() {
+        return start;
+    }
+
+    public static String getEnd() {
+        return end;
+    }
 }

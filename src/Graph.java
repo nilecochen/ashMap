@@ -153,6 +153,16 @@ public class Graph<T extends Tile> {
             return pathCopy;
         }
 
+        private void clearPath() {
+            path = new ArrayList<>();
+        }
+
+    }
+
+    private void unWeightVertices(){
+        for (Vertice vertice: vertices) {
+            vertice.setWeight(0);
+        }
     }
 
     private class Edge {
@@ -283,16 +293,18 @@ public class Graph<T extends Tile> {
 
     public ArrayList<T> findPath(T start, T end) { //Dijkstra
         ArrayList<Vertice> frontier = new ArrayList<>();
-        frontier.add(getVertice(start));
+        //frontier.add(getVertice(start));
         for (Vertice vertice: vertices) {
-            vertice.unExploreEdges();
+            //vertice.unExploreEdges();
             if (vertice.getData() == start) {
                 vertice.setWeight(0);
+                vertice.clearPath();
                 //vertice.addToPath(vertice);
             } else {
                 vertice.setWeight(1000000);
-                frontier.add(vertice);
+                //frontier.add(vertice);
             }
+            frontier.add(vertice);
 
         }
         ArrayList<T> explored = new ArrayList<>();
@@ -311,6 +323,7 @@ public class Graph<T extends Tile> {
 
 
             if(current.getData() == end){
+                unWeightVertices();
                 explored.add(end);
                 current.addToPath(current);
                 current.printPath();
@@ -323,9 +336,12 @@ public class Graph<T extends Tile> {
                 Edge edgeCheck = current.getEdge(i);
                 Vertice verticeCheck = edgeCheck.getOther(current);
 
+                /*
                 if (edgeCheck.isExplored()) {
                     continue;
                 }
+
+                 */
 
                 int newDistance = current.getWeight() + edgeCheck.getWeight();
 

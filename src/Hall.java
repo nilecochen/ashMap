@@ -9,9 +9,12 @@ public class Hall extends Tile {
     public Hall(int x, int y, Group root){
         setX(x);
         setY(y);
-        this.root = root;
+        //this.root = root;
+        setRoot(root);
     }
 
+
+    /*
     @Override
     public void draw() {
         Circle circle = new Circle(1, Color.BLUE);
@@ -20,6 +23,7 @@ public class Hall extends Tile {
         circle.setCenterY(getY());
         root.getChildren().addAll(circle);
     }
+     */
 
 
 

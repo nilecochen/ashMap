@@ -5,13 +5,14 @@ import javafx.scene.shape.Circle;
 
 public class Room extends Tile {
     private String id;
-    private Group root;
+    //private Group root;
 
 
     public Room(int x, int y, Group root, String id) {
         setX(x);
         setY(y);
-        this.root = root;
+        setRoot(root);
+        //this.root = root;
         this.id = id;
     }
 
@@ -23,6 +24,7 @@ public class Room extends Tile {
         return id;
     }
 
+    /*
     @Override
     public void draw() {
         Circle circle = new Circle(1, Color.RED);
@@ -31,4 +33,5 @@ public class Room extends Tile {
         circle.setCenterY(getY());
         root.getChildren().addAll(circle);
     }
+     */
 }
