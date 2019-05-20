@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,15 +10,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <TextField fx:id="currentPos" layoutX="717.0" layoutY="136.0" prefHeight="27.0" prefWidth="123.0" text="Current Position" />
-      <Button fx:id="confirmCurr" layoutX="840.0" layoutY="136.0" mnemonicParsing="false" onAction="#confirmCurrentPosition" text="Confirm" />
-      <TextField fx:id="dest" layoutX="717.0" layoutY="187.0" prefHeight="27.0" prefWidth="123.0" text="Destination" />
-      <Button fx:id="confirmDest" layoutX="840.0" layoutY="187.0" mnemonicParsing="false" onAction="#confirmDestination" text="Confirm" />
-      <Button fx:id="reset" layoutX="787.0" layoutY="236.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+      <TextField fx:id="currentPos" layoutX="717.0" layoutY="136.0" prefHeight="27.0" prefWidth="130.0" text="Current Position" />
+      <TextField fx:id="dest" layoutX="717.0" layoutY="187.0" prefHeight="27.0" prefWidth="130.0" text="Destination" />
+      <Button fx:id="reset" layoutX="717.0" layoutY="236.0" mnemonicParsing="false" onAction="#reset" prefHeight="27.0" prefWidth="53.0" text="Reset" />
       <ImageView fitHeight="914.0" fitWidth="693.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/AshburyFloorMapLevel2.jpg" />
          </image></ImageView>
       <Group />
+      <Button fx:id="findPath" layoutX="771.0" layoutY="236.0" mnemonicParsing="false" onAction="#findPathBtn" prefHeight="27.0" prefWidth="75.0" text="FindPath" />
+      <Label fx:id="message" layoutX="717.0" layoutY="283.0" prefHeight="16.0" prefWidth="198.0" />
    </children>
 </AnchorPane>

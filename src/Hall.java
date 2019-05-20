@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Hall extends Tile {
-    Group root;
+    //Group root;
     public Hall(int x, int y, Group root){
         setX(x);
         setY(y);

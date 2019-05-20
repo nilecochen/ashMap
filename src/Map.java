@@ -1,5 +1,6 @@
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -9,6 +10,8 @@ public class Map {
     private Graph<Tile> graph = new Graph<>();
     private Group root;
     private ArrayList<Room> rooms = new ArrayList<>();
+
+
     public Map(Group root) {
         this.root = root;
         createMap();
@@ -247,15 +250,6 @@ public class Map {
         graph.link(42, findRoom("big gym"), 1000);
         graph.link(41, findRoom("big gym"), 1000);
 
-
-
-
-
-
-
-
-
-
     }
 
     public Room findRoom(String id) {
@@ -267,17 +261,28 @@ public class Map {
         return null;
     }
 
-    /**
-     * returns the index of a certain room in the rooms array
-     * @param id name of the room being searched
-     * @return index of the room in the rooms array
-     */
+    public boolean hasRoom(String id) {
+        for(Room room: rooms) { //Linear search used because there is nothing that rooms can be compared to (they can't be sorted)
+            if (room.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+
+    /*
     public int findRoomIndex(String id) {
         return rooms.indexOf(findRoom(id));
     }
 
+     */
 
+    /*public void setMessage(Label message) {
+        this.message = message;
+    }
+
+     */
 
     public void drawLinks(String start, String end) {
         /*
@@ -295,13 +300,32 @@ public class Map {
         }
         */
 
+        Label message = Controller.getStaticMessage(); //message is d
+        if (!hasRoom(start) && !hasRoom(end)) {
+            message.setText("Start and end rooms don't exist");
+            return;
+        } else if (!hasRoom(start)) {
+            message.setText("Start room doesn't exist");
+            return;
+        } else if (!hasRoom(end)) {
+            message.setText("End room doesn't exist");
+            return;
+        } else {
+            message.setText("Red is start, green is end");
+        }
+
+
+
         ArrayList<Tile> path = graph.findPath(findRoom(start), findRoom(end));
         //ArrayList<Tile> path = graph.findPath(rooms.get(18), rooms.get(1));
 
+        /*
         for (Tile step: path) {
             System.out.println(step.getX() + ", " + step.getY());
 
         }
+
+         */
 
         /*
         for (ArrayList<Tile> points: graph.getEdges()) {

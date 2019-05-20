@@ -48,7 +48,7 @@ public class Graph<T extends Tile> {
             }
         }
 
-        System.out.println(vertice1index + 1 + ", " + (vertice2index + 1) + ", weight: " + linkFinder.getWeight());
+        //System.out.println(vertice1index + 1 + ", " + (vertice2index + 1) + ", weight: " + linkFinder.getWeight());
         Edge edge = new Edge(vertices.get(vertice1index), vertices.get(vertice2index), weight);
         edges.add(edge);
         return true;
@@ -58,9 +58,12 @@ public class Graph<T extends Tile> {
         return link(vertices.get(i1-1).getData(), vertices.get(i2-1).getData(), weight);
     }
 
+    /*
     public boolean link (T object1, int i2, int weight) {
         return link(object1, vertices.get(i2-1).getData(), weight);
     }
+
+     */
 
     public boolean link (int i1, T object2, int weight) {
         return link(vertices.get(i1-1).getData(), object2, weight);
@@ -81,9 +84,12 @@ public class Graph<T extends Tile> {
         public T getData() {
             return data;
         }
+        /*
         public int edgeNumbers() {
             return edges.size();
         }
+
+         */
         public Edge getEdge(int i) {
             return edges.get(i);
         }
@@ -103,6 +109,7 @@ public class Graph<T extends Tile> {
             return neighbours;
         }
 
+        /*
         public void printPath () {
             System.out.print("path to " + (vertices.indexOf(this) + 1) + ": ");
             for (Vertice vertice: path) {
@@ -112,6 +119,9 @@ public class Graph<T extends Tile> {
             System.out.println();
         }
 
+         */
+
+        /*
         public ArrayList<Edge> getEdges() {
             return edges;
         }
@@ -119,6 +129,8 @@ public class Graph<T extends Tile> {
         public ArrayList<Vertice> getPath() {
             return path;
         }
+
+         */
 
         public void setPath(ArrayList<Vertice> path) {
             this.path = path;
@@ -141,11 +153,14 @@ public class Graph<T extends Tile> {
             return pathData;
         }
 
+        /*
         public void unExploreEdges() {
             for (Edge edge: edges) {
                 edge.unExplore();
             }
         }
+
+         */
 
         public ArrayList<Vertice> getPathCopy () {
             ArrayList<Vertice> pathCopy = new ArrayList<>();
@@ -169,7 +184,7 @@ public class Graph<T extends Tile> {
         private Vertice vertice1;
         private Vertice vertice2;
         private int weight;
-        private boolean explored = false;
+        //private boolean explored = false;
         public Edge(Vertice vertice1, Vertice vertice2, int weight) {
             this.vertice1 = vertice1;
             vertice1.addEdge(this);
@@ -190,28 +205,41 @@ public class Graph<T extends Tile> {
             }
 
         }
+        /*
         public void markExplored() {
             explored = true;
         }
         public void unExplore() {
             explored = false;
         }
+
+         */
+        /*
         public Vertice getVertice1() {
             return vertice1;
         }
         public Vertice getVertice2() {
             return vertice2;
         }
+
+         */
+        /*
         public boolean isExplored() {
             return explored;
         }
+
+         */
     }
 
+    /*
     public void runThrough() {
         runThrough(vertices.get(0), new ArrayList<Edge>(), true);
         System.out.println("end");
     }
 
+     */
+
+    /*
     private boolean runThrough(Vertice checker, ArrayList<Edge> checked, boolean first) {
 
         //System.out.println(checker.edgeNumbers());
@@ -271,6 +299,7 @@ public class Graph<T extends Tile> {
         }
         */
 
+    /*
     public ArrayList<ArrayList<T>> getEdges() {
         ArrayList<ArrayList<T>> allData = new ArrayList<>();
         for (Edge edge:edges) {
@@ -281,6 +310,8 @@ public class Graph<T extends Tile> {
         }
         return allData;
     }
+
+     */
 
     public Vertice getVertice (T data) {
         for (int i = 0; i < vertices.size(); i ++) {
@@ -309,13 +340,13 @@ public class Graph<T extends Tile> {
         }
         ArrayList<T> explored = new ArrayList<>();
         explored.add(start);
-        Vertice current = frontier.get(0);
+        Vertice current;
 
         while (frontier.size() != 0) {
 
 
             Collections.sort(frontier);
-            System.out.println("path weight: " + frontier.get(0).getWeight());
+            //System.out.println("path weight: " + frontier.get(0).getWeight());
 
             current = frontier.get(0);
 
@@ -326,7 +357,7 @@ public class Graph<T extends Tile> {
                 unWeightVertices();
                 explored.add(end);
                 current.addToPath(current);
-                current.printPath();
+                //current.printPath();
                 break;
             }
             ArrayList<Vertice> neighbours = current.getNeighbours();
@@ -349,7 +380,7 @@ public class Graph<T extends Tile> {
                     verticeCheck.setWeight(newDistance);
                     verticeCheck.setPath(current.getPathCopy());
                     verticeCheck.addToPath(current);
-                    verticeCheck.printPath();
+                    //verticeCheck.printPath();
                     //explored.add(verticeCheck.getData());
                     //current = verticeCheck;
                 }
@@ -358,7 +389,7 @@ public class Graph<T extends Tile> {
             frontier.remove(current);
         }
 
-        System.out.println("path found");
+        //System.out.println("path found");
         return getVertice(end).getPathData();
         //return explored;
     }
