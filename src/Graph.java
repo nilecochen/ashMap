@@ -8,7 +8,7 @@ import java.util.Collections;
  * added. The elements are connected by linking them. Each link (edge) has a weight. The graph format is used so the
  * shortest path between two points can be found.
  */
-public class Graph<T extends Tile> {
+public class Graph<T> {
 
     private ArrayList<Vertice> vertices = new ArrayList<>(); //Holds all vertices added to graph
     private ArrayList<Edge> edges = new ArrayList<>(); //Holds all edges added to the graph (links)
@@ -375,5 +375,20 @@ public class Graph<T extends Tile> {
     }
     */
 
+    /*
+    public static void main(String[] args) {
+        Graph<String> strings = new Graph<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+        strings.link("1", "3", 1);
+        strings.link("2", "3", 2);
+        strings.link("1", "2", 400);
+        strings.add("50");
+        strings.link("50", "2", 3);
+        strings.runThrough();
+    }
+
+     */
 
 }
