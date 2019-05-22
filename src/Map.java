@@ -6,28 +6,27 @@ import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
+/**
+ * @author Nile Cochen
+ * The map class holds and creates the graph. It creates all rooms and halls.
+ */
 public class Map {
-    private Graph<Tile> graph = new Graph<>();
-    private Group root;
-    private ArrayList<Room> rooms = new ArrayList<>();
+    private Graph<Tile> graph = new Graph<>(); // The graph holds all tiles
+    private Group root; // Copy of root for drawing
+    private ArrayList<Room> rooms = new ArrayList<>(); //Holds all rooms outside of graph so they are easily accessible
 
-
+    /**
+     * Constructor for map defines root and calls create map
+     * @param root definition of root
+     */
     public Map(Group root) {
         this.root = root;
         createMap();
     }
 
-    /*
-    public void draw() {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.getVerticeData(i).draw();
-        }
-        //drawLinks();
-
-
-    }
+    /**
+     * createMap adds all extensions of Tile, and links all rooms and halls. Rooms are never linked to other rooms.
      */
-
     public void createMap() {
         //add halls
         graph.add(new Hall(370, 150, root)); //hall 1
@@ -252,6 +251,11 @@ public class Map {
 
     }
 
+    /**
+     * Finds a room in the rooms ArrayList from room id
+     * @param id id of Room being searched for
+     * @return returns room with matching id
+     */
     public Room findRoom(String id) {
         for(Room room: rooms) { //Linear search used because there is nothing that rooms can be compared to (they can't be sorted)
             if (room.getId().equals(id)) {
@@ -261,6 +265,11 @@ public class Map {
         return null;
     }
 
+    /**
+     * Searches to see if rooms contains a room with specific id
+     * @param id id to search for
+     * @return true if matching room is found, false if matching room isn't found
+     */
     public boolean hasRoom(String id) {
         for(Room room: rooms) { //Linear search used because there is nothing that rooms can be compared to (they can't be sorted)
             if (room.getId().equals(id)) {
@@ -270,77 +279,36 @@ public class Map {
         return false;
     }
 
-
-    /*
-    public int findRoomIndex(String id) {
-        return rooms.indexOf(findRoom(id));
-    }
-
+    /**
+     * Draws path between room with id matching start and id matching end
+     * @param start id of current room
+     * @param end id of destination room
      */
-
-    /*public void setMessage(Label message) {
-        this.message = message;
-    }
-
-     */
-
     public void drawLinks(String start, String end) {
-        /*
-        ArrayList<Tile> points = new ArrayList<>();
-        points = graph.getEdges();
-        for (int i = 1; i < points.size(); i++) {
-            if (i > 1) {
-                if (points.get(i - 1) == points.get(i - 2)) {
-                    continue;
-                }
-            }
-            Line line = new Line(points.get(i-1).getX(), points.get(i-1).getY(), points.get(i).getX(), points.get(i).getY());
-            line.setStroke(Color.GREEN);
-            root.getChildren().add(line);
-        }
-        */
 
-        Label message = Controller.getStaticMessage(); //message is d
-        if (!hasRoom(start) && !hasRoom(end)) {
+        Label message = Controller.getStaticMessage(); //message is displayed giving information on invalid rooms or use of map
+        if (!hasRoom(start) && !hasRoom(end)) { //both rooms do not exist
             message.setText("Start and end rooms don't exist");
             return;
-        } else if (!hasRoom(start)) {
+        } else if (!hasRoom(start)) { //start room does not exist
             message.setText("Start room doesn't exist");
             return;
-        } else if (!hasRoom(end)) {
+        } else if (!hasRoom(end)) { //end room does not exist
             message.setText("End room doesn't exist");
             return;
-        } else {
+        } else { //both rooms valid, instructions on difference between start room and end room
             message.setText("Red is start, green is end");
         }
 
+        ArrayList<Tile> path = graph.findPath(findRoom(start), findRoom(end)); //find path
 
-
-        ArrayList<Tile> path = graph.findPath(findRoom(start), findRoom(end));
-        //ArrayList<Tile> path = graph.findPath(rooms.get(18), rooms.get(1));
-
-        /*
-        for (Tile step: path) {
-            System.out.println(step.getX() + ", " + step.getY());
-
-        }
-
-         */
-
-        /*
-        for (ArrayList<Tile> points: graph.getEdges()) {
-            Line line = new Line(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
-            line.setStroke(Color.GREEN);
-            root.getChildren().add(line);
-        }
-
-         */
-
-        for (int i = 0; i < path.size() -1; i++)  {
+        for (int i = 0; i < path.size() -1; i++)  {//print path
             Line line = new Line(path.get(i).getX(), path.get(i).getY(), path.get(i+1).getX(), path.get(i+1).getY());
             line.setStroke(Color.BLUE);
             root.getChildren().add(line);
         }
+
+        //draw start and end room
         findRoom(start).drawStart();
         findRoom(end).drawEnd();
 

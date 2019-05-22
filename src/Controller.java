@@ -2,52 +2,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * @author Nile Cochen
+ * The Controller class handles input from the stage.
+ */
 public class Controller {
-    private static Group root;
-    private static Parent layout;
-
-    /*
+    private static Group root; //Copy of root from GUI
+    private static Parent layout; //Copy of Layout from GUI
     @FXML
-    private Canvas canvas = new Canvas();
+    private TextField currentPos; //TextField used to find id of start room
     @FXML
-    private Button confirmDest;
+    private TextField dest; //TestField used to find id of end room
     @FXML
-    private Button confirmCurr;
-    @FXML
-    private Button reset;
-     */
-    @FXML
-    private TextField currentPos;
-    @FXML
-    private TextField dest;
-    @FXML
-    private Label message;
-
+    private Label message; //Label used to display messages
     private static Label staticMessage; //Static copy of message so other classes can access message without initialising Controller
 
-    /*
-    @FXML
-    public void confirmCurrentPosition(ActionEvent event) {
-        //System.out.println("TADA!");
-        GUI.setStart(currentPos.getText());
-        GUI.pathFind();
-
-    }
-
-    @FXML
-    public void confirmDestination(ActionEvent event) {
-        //System.out.println("TADA!");
-        GUI.setEnd(dest.getText());
-        GUI.pathFind();
-    }
-
+    /**
+     * Called when reset button is pressed. Removes all lines and dots from root, clears text in TextFields and
+     * message:Label. Calls setStart and setEnd with empty Strings.
+     * @param event
      */
-
     @FXML
     public void reset(ActionEvent event) {
         root.getChildren().clear();
@@ -59,6 +36,11 @@ public class Controller {
         dest.setText("");
     }
 
+    /**
+     * Called when findPath:Button pressed. Removes all lines and dots from the root. Calls setStart and setEnd with
+     * text from the currentPos and dest Textfields.
+     * @param event
+     */
     @FXML
     public void findPathBtn(ActionEvent event) {
         staticMessage = message; //staticMessage copied here because Controller is never initialised so constructor would never be called. Action listeners are the only way to access non-static objects
@@ -69,30 +51,28 @@ public class Controller {
         GUI.pathFind();
     }
 
-
+    /**
+     * setter for root
+     * @param root Group that this.root is set to
+     */
     public static void setRoot(Group root) {
         Controller.root = root;
     }
 
+    /**
+     * setter for layout
+     * @param layout Parent that this.layout is set to
+     */
     public static void setLayout(Parent layout) {
         Controller.layout = layout;
     }
 
+    /**
+     * getter for the staticMessage
+     * @return returns Static message
+     */
     public static Label getStaticMessage() {
         return staticMessage;
     }
-
-    /*
-    public static void transferMessage() {
-        GUI.setMessage(message);
-    }
-
-     */
-
-    /*public static void setMessageText(String messageText) {
-        System.out.println(message.getText());
-        //message.setText("");
-    }
-     */
 
 }

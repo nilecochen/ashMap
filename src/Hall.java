@@ -4,27 +4,21 @@ import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+/**
+ * @author Nile Cochen
+ * Extension of hall. Functionally the same as the tile. Made to differentiate between Room and Tile
+ */
 public class Hall extends Tile {
-    //Group root;
+    /**
+     * Constructor defines all objects of Tile
+     * @param x x definition
+     * @param y y definition
+     * @param root root definition
+     */
     public Hall(int x, int y, Group root){
         setX(x);
         setY(y);
-        //this.root = root;
         setRoot(root);
     }
-
-
-    /*
-    @Override
-    public void draw() {
-        Circle circle = new Circle(1, Color.BLUE);
-        circle.setCursor(Cursor.MOVE);
-        circle.setCenterX(getX());
-        circle.setCenterY(getY());
-        root.getChildren().addAll(circle);
-    }
-     */
-
-
 
 }
